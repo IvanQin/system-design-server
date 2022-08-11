@@ -12,3 +12,8 @@ Run the following command at the project root to run unit tests
 ```
 python3 -m unittest tests.<file_name_without_extension>
 ```
+or
+```
+python3 -m unittest discover <test_file_dir>
+```
+to run all of the tests under the file directory. Note that all tests name have to be started with "test".
