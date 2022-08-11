@@ -133,3 +133,6 @@ testing/
 
 # MacOS file
 .DS_store
+
+# VS code
+.vscode/
