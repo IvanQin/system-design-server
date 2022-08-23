@@ -1,4 +1,5 @@
 from .i_node import INode
+from ..communication.model.message import Message
 
 class Node(INode):
 
@@ -10,4 +11,7 @@ class Node(INode):
         return self.node_id
 
     def start(self):
+        pass
+
+    def listen(self, message : Message):
         pass

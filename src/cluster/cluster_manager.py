@@ -12,3 +12,6 @@ class ClusterManager():
         node_id = str(uuid.uuid4())
         self.id_to_node[node_id] = node
         return node_id
+
+    def get_active_nodes() -> List[Node]:
+        return self.id_to_node.values()
