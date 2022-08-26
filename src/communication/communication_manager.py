@@ -3,12 +3,27 @@ from .model.message import Message
 from .model.message_action import Action
 from .model.message_body import MessageBody
 from ..cluster.cluster_manager import ClusterManager
+from ..utils.repeated_task import RepeatedTask
 
 class CommunicationManager():
 
     def __init__(self, cluster_manager : ClusterManager) -> None:
         self.message_queue = Queue()
         self.cluster_manager = cluster_manager
+        self.broadcast_service = None
+        self.is_running = False
+
+    def start_service(self):
+        if self.is_running:
+            return
+        self.is_running = True
+        self.broadcast_service = RepeatedTask(0.5, self._broadcast)
+        self.broadcast_service.start()
+
+    def end_service(self):
+        if self.broadcast_service:
+            self.broadcast_service.stop()
+        self.is_running = False
 
     # TODO the public API here should be the specific actions from the node, Message itself should be hidden from the Node layer
     def increment_value(self, sender_id : str, receiver_id : str):
@@ -29,6 +44,6 @@ class CommunicationManager():
     def _get(self) -> Message:
         self.message_queue.get()
 
-    # start up a thread to call this method in a periodical way
-    def _broadcast(self, message: Message):
+    def _broadcast(self):
+        message = self._get()
         map(lambda node: node.listen(message), self.cluster_manager.get_active_nodes)
