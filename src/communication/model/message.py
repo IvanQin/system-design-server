@@ -7,3 +7,5 @@ class Message():
         self.sender_id = sender_id
         self.receiver_id = receiver_id
         self.body = body
+
+    # TODO: override str() method of Message

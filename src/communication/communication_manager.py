@@ -34,6 +34,10 @@ class CommunicationManager():
         message_body = MessageBody(Action.DECREMENT_VALUE)
         self._send_message(sender_id, receiver_id, message_body)
 
+    def send_heartbeat(self, sender_id : str, receiver_id : str):
+        message_body = MessageBody(Action.HEARTBEAT)
+        self._send_message(sender_id, receiver_id, message_body)
+
     def _send_message(self, sender_id : str, receiver_id : str, message_body: MessageBody):
         msg = Message(sender_id,receiver_id, message_body)
         self._put(msg)
@@ -42,8 +46,9 @@ class CommunicationManager():
         self.message_queue.put(message)
 
     def _get(self) -> Message:
-        self.message_queue.get()
+        return None if self.message_queue.empty() else self.message_queue.get_nowait()
 
     def _broadcast(self):
         message = self._get()
-        map(lambda node: node.listen(message), self.cluster_manager.get_active_nodes)
+        if message:
+            map(lambda node: node.listen(message), self.cluster_manager.get_active_nodes)
