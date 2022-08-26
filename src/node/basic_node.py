@@ -17,4 +17,4 @@ class BasicNode(INode):
         pass
 
     def listen(self, message : Message):
-        Logger.i(self.get_node_id, str(message))
+        Logger.i(self.get_node_id(), "listen", str(message))
