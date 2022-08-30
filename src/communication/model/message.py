@@ -8,4 +8,7 @@ class Message():
         self.receiver_id = receiver_id
         self.body = body
 
+    def get_receiver_id(self) -> str:
+        return self.receiver_id
+
     # TODO: override str() method of Message

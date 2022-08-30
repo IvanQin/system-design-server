@@ -2,6 +2,8 @@ from node.node import Node
 import uuid
 class ClusterManager():
 
+    RECEIVER_ID_ALL = "0"
+
     def __init__(self):
         self.id_to_node = {}
 
