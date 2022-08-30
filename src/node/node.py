@@ -1,4 +1,4 @@
-from .i_node import INode
+from src.node.interface.i_node import INode
 from ..communication.model.message import Message
 
 class Node(INode):

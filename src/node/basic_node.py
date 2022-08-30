@@ -1,5 +1,5 @@
-from .i_node import INode
-from ..communication.model.message import Message
+from src.node.interface.i_node import INode
+from src.communication.model.message import Message
 from src.logger import Logger
 from threading import Thread
 from src.utils.repeated_task import RepeatedTask

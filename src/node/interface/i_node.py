@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ..communication.model.message import Message
+from src.communication.model.message import Message
 from src.communication.communication_manager import CommunicationManager
 class INode(ABC):
 
