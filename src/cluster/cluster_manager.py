@@ -16,5 +16,5 @@ class ClusterManager():
         self.id_to_node[node_id] = node
         return node_id
 
-    def get_active_nodes() -> List[INode]:
-        return self.id_to_node.values()
+    def get_active_nodes(self) -> List[INode]:
+        return list(self.id_to_node.values())
