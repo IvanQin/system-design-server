@@ -1,5 +1,6 @@
 from src.node.interface.i_node import INode
 from src.communication.model.message import Message
+from src.communication.communication_manager import CommunicationManager
 from src.logger import Logger
 from threading import Thread
 from src.utils.repeated_task import RepeatedTask
@@ -10,9 +11,12 @@ class BasicNode(INode):
     Basic node will send heartbeat message to every other node and will receive heartbeat from every other nodes timely.
     """
 
-    def __init__(self):
-        super.__init__(self)
+    def __init__(self, node_id : str = None):
+        super.__init__(self, node_id)
         self.working_task = None
+
+    def set_communication_mgr(communication_manager : CommunicationManager):
+        self.communication_mgr = communication_manager
 
     def set_node_id(self, node_id: str):
         self.node_id = node_id

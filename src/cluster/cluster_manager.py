@@ -1,4 +1,5 @@
-from node.node import Node
+from src.node.interface.i_node import INode
+from typing import List
 import uuid
 class ClusterManager():
 
@@ -7,7 +8,7 @@ class ClusterManager():
     def __init__(self):
         self.id_to_node = {}
 
-    def activate(self, node : Node) -> str:
+    def activate(self, node : INode) -> str:
         """
         activate the node and get back a node_id
         """
@@ -15,5 +16,5 @@ class ClusterManager():
         self.id_to_node[node_id] = node
         return node_id
 
-    def get_active_nodes() -> List[Node]:
+    def get_active_nodes() -> List[INode]:
         return self.id_to_node.values()
