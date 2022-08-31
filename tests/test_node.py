@@ -12,6 +12,11 @@ class NodeTest(unittest.TestCase):
         basic_node = BasicNode("basic_node")
         self.assertEqual(basic_node.get_node_id(), "basic_node")
 
+    def test_set_node_id(self): 
+        basic_node = BasicNode("basic_node")
+        basic_node.set_node_id("updated_id")
+        self.assertEqual(basic_node.get_node_id(), "updated_id")
+
 
 if __name__ == '__main__':
     unittest.main()
