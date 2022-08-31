@@ -1,7 +1,7 @@
 from src.node.interface.i_node import INode
 from src.communication.model.message import Message
 from src.communication.communication_manager import CommunicationManager
-from src.logger import Logger
+from src.logger.logger import Logger
 from threading import Thread
 from src.utils.repeated_task import RepeatedTask
 from src.cluster.cluster_manager import ClusterManager
@@ -12,7 +12,7 @@ class BasicNode(INode):
     """
 
     def __init__(self, node_id : str = None):
-        super.__init__(self, node_id)
+        super().__init__(node_id)
         self.working_task = None
 
     def set_communication_mgr(communication_manager : CommunicationManager):

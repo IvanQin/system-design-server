@@ -1,4 +1,3 @@
-from abc import staticmethod
 import logging
 
 class Logger():
