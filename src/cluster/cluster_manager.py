@@ -18,3 +18,6 @@ class ClusterManager():
 
     def get_active_nodes(self) -> List[INode]:
         return list(self.id_to_node.values())
+
+    def shutdown_all_nodes(self):
+        map(lambda node: node.stop(), self.id_to_node.values())

@@ -18,5 +18,17 @@ class ClusterManagerTest(unittest.TestCase):
         self.assertEqual(active_nodes[0], node1)
         self.assertEqual(active_nodes[1], node2)
 
+    def test_shutdown_nodes(self):
+        cluster_mgr = ClusterManager()
+        node_factory = NodeFactory(cluster_mgr)
+        node1 = node_factory.create_node()
+        node2 = node_factory.create_node()
+
+        node_factory.activate_node(node1)
+        node_factory.activate_node(node2)
+
+        cluster_mgr.shutdown_all_nodes()
+
+
 if __name__ == '__main__':
     unittest.main()

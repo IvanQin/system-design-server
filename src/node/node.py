@@ -16,5 +16,8 @@ class Node(INode):
     def start(self):
         pass
 
+    def stop(self):
+        pass
+
     def listen(self, message : Message):
         pass

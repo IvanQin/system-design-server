@@ -27,6 +27,11 @@ class BasicNode(INode):
     def start(self):
         self.working_task = RepeatedTask(1, self._start())
 
+    def stop(self):
+        if self.working_task:
+            self.working_task.stop()
+        self.working_task = None
+
     def _start(self):
         self.communication_mgr.send_heartbeat(self.get_node_id(), receiver_id=ClusterManager.RECEIVER_ID_ALL)
 

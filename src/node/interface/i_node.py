@@ -19,5 +19,9 @@ class INode(ABC):
         raise NotImplementedError()
 
     @abstractmethod
+    def stop(self):
+        raise NotImplementedError()
+
+    @abstractmethod
     def listen(self, message : Message):
         raise NotImplementedError()

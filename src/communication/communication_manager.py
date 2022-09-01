@@ -51,4 +51,4 @@ class CommunicationManager():
     def _broadcast(self):
         message = self._get()
         if message:
-            map(lambda node: node.listen(message), self.cluster_manager.get_active_nodes)
+            map(lambda node: node.listen(message), self.cluster_manager.get_active_nodes())
