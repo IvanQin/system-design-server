@@ -7,3 +7,6 @@ class MessageBody():
     @staticmethod
     def get_default_instance() :
         return MessageBody(Action.DEFAULT)
+
+    def __str__(self):
+        return f'{str(self.action)}'

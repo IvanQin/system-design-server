@@ -11,4 +11,5 @@ class Message():
     def get_receiver_id(self) -> str:
         return self.receiver_id
 
-    # TODO: override str() method of Message
+    def __str__(self):
+        return f'[{self.sender_id} -> {self.receiver_id}] {str(self.body)}'

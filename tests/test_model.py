@@ -10,5 +10,9 @@ class ModelTest(unittest.TestCase):
         self.assertEqual(message.receiver_id, "receiver_id")
         self.assertEqual(message.body.action.name, "DEFAULT")
 
+    def test_print_message(self):
+        message = Message("sender_id","receiver_id", MessageBody.get_default_instance())
+        self.assertEqual(str(message), '[sender_id -> receiver_id] DEFAULT')
+
 if __name__ == '__main__':
     unittest.main()
