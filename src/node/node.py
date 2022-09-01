@@ -4,7 +4,7 @@ from src.communication.communication_manager import CommunicationManager
 
 class Node(INode):
 
-    def set_communication_mgr(communication_manager : CommunicationManager):
+    def set_communication_mgr(self, communication_manager : CommunicationManager):
         self.communication_mgr = communication_manager
 
     def set_node_id(self, node_id: str):

@@ -15,7 +15,7 @@ class BasicNode(INode):
         super().__init__(node_id)
         self.working_task = None
 
-    def set_communication_mgr(communication_manager : CommunicationManager):
+    def set_communication_mgr(self, communication_manager : CommunicationManager):
         self.communication_mgr = communication_manager
 
     def set_node_id(self, node_id: str):
