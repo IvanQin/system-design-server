@@ -11,5 +11,8 @@ class Message():
     def get_receiver_id(self) -> str:
         return self.receiver_id
 
+    def get_sender_id(self) -> str:
+        return self.sender_id
+
     def __str__(self):
         return f'[{self.sender_id} -> {self.receiver_id}] {str(self.body)}'

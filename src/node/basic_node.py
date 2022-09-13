@@ -41,5 +41,8 @@ class BasicNode(INode):
 
     def listen(self, message : Message):
         Logger.d(TAG, f"Node[{self.get_node_id()}] is receiving {str(message)}")
+        if (message.get_sender_id() == self.get_node_id()):
+            # Do not respond to its own message
+            return
         if message.get_receiver_id() == (ClusterManager.RECEIVER_ID_ALL or self.get_node_id()):
             Logger.d(TAG, f"Node[{self.get_node_id()}] starts handling {str(message)}")
