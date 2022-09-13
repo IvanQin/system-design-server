@@ -28,7 +28,8 @@ class BasicNode(INode):
 
     def start(self):
         Logger.d(TAG, "start")
-        self.working_task = RepeatedTask(1, self._start())
+        self.working_task = RepeatedTask(1, self._start)
+        self.working_task.start()
 
     def stop(self):
         Logger.d(TAG, "stop")
@@ -45,4 +46,4 @@ class BasicNode(INode):
             # Do not respond to its own message
             return
         if message.get_receiver_id() == (ClusterManager.RECEIVER_ID_ALL or self.get_node_id()):
-            Logger.d(TAG, f"Node[{self.get_node_id()}] starts handling {str(message)}")
+            Logger.i(TAG, f"Node[{self.get_node_id()}] starts handling {str(message)}")

@@ -55,6 +55,7 @@ class CommunicationManager():
         return None if self.message_queue.empty() else self.message_queue.get_nowait()
 
     def _broadcast(self):
+        Logger.d(TAG, 'internal broadcast called')
         message = self._get()
         if message:
             Logger.d(TAG, f'broadcast message {str(message)}')

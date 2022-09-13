@@ -18,6 +18,7 @@ class RepeatedTask():
         self._start()
 
     def _start(self):
+        Logger.d(TAG, f"internal start, should keep running = {self.is_running}")
         if self.is_running:
             self.func(*self.args, **self.kwargs)
             threading.Timer(self.interval, self._start).start()
