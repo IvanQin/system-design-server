@@ -27,4 +27,5 @@ class ClusterManager():
         return active_nodes
 
     def shutdown_all_nodes(self):
-        map(lambda node: node.stop(), self.id_to_node.values())
+        for node in self.id_to_node.values():
+            node.stop()
