@@ -6,6 +6,8 @@ from threading import Thread
 from src.utils.repeated_task import RepeatedTask
 from src.cluster.cluster_manager import ClusterManager
 
+TAG = "BasicNode"
+
 class BasicNode(INode):
     """
     Basic node will send heartbeat message to every other node and will receive heartbeat from every other nodes timely.
@@ -25,9 +27,11 @@ class BasicNode(INode):
         return self.node_id
 
     def start(self):
+        Logger.d(TAG, "start")
         self.working_task = RepeatedTask(1, self._start())
 
     def stop(self):
+        Logger.d(TAG, "stop")
         if self.working_task:
             self.working_task.stop()
         self.working_task = None
@@ -36,5 +40,6 @@ class BasicNode(INode):
         self.communication_mgr.send_heartbeat(self.get_node_id(), receiver_id=ClusterManager.RECEIVER_ID_ALL)
 
     def listen(self, message : Message):
+        Logger.d(TAG, f"Node[{self.get_node_id()}] is receiving {str(message)}")
         if message.get_receiver_id() == (ClusterManager.RECEIVER_ID_ALL or self.get_node_id()):
-            Logger.i(self.get_node_id(), "listen", str(message))
+            Logger.d(TAG, f"Node[{self.get_node_id()}] starts handling {str(message)}")

@@ -4,6 +4,9 @@ from .model.message_action import Action
 from .model.message_body import MessageBody
 from ..cluster.cluster_manager import ClusterManager
 from ..utils.repeated_task import RepeatedTask
+from src.logger.logger import Logger
+
+TAG = "CommunicationManager"
 
 class CommunicationManager():
 
@@ -14,6 +17,7 @@ class CommunicationManager():
         self.is_running = False
 
     def start_service(self):
+        Logger.d(TAG, "start service")
         if self.is_running:
             return
         self.is_running = True
@@ -21,6 +25,7 @@ class CommunicationManager():
         self.broadcast_service.start()
 
     def end_service(self):
+        Logger.d(TAG, "end service")
         if self.broadcast_service:
             self.broadcast_service.stop()
         self.is_running = False
@@ -40,6 +45,7 @@ class CommunicationManager():
 
     def _send_message(self, sender_id : str, receiver_id : str, message_body: MessageBody):
         msg = Message(sender_id,receiver_id, message_body)
+        Logger.d(TAG, f'send message {str(msg)}')
         self._put(msg)
 
     def _put(self, message : Message):
@@ -51,4 +57,6 @@ class CommunicationManager():
     def _broadcast(self):
         message = self._get()
         if message:
-            map(lambda node: node.listen(message), self.cluster_manager.get_active_nodes())
+            Logger.d(TAG, f'broadcast message {str(message)}')
+            for node in self.cluster_manager.get_active_nodes():
+                node.listen(message)

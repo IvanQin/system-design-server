@@ -1,5 +1,8 @@
 import threading
 import time
+from src.logger.logger import Logger
+
+TAG = "RepeatedTask"
 
 class RepeatedTask():
     def __init__(self, interval: int, func, *args, **kwargs):
@@ -10,6 +13,7 @@ class RepeatedTask():
         self.kwargs = kwargs
 
     def start(self):
+        Logger.d(TAG, "start")
         self.is_running = True
         self._start()
 
@@ -19,4 +23,5 @@ class RepeatedTask():
             threading.Timer(self.interval, self._start).start()
 
     def stop(self):
+        Logger.d(TAG, "stop")
         self.is_running = False

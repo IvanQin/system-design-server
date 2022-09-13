@@ -1,6 +1,10 @@
 from src.node.interface.i_node import INode
 from typing import List
+from src.logger.logger import Logger
 import uuid
+
+TAG = "ClusterManager"
+
 class ClusterManager():
 
     RECEIVER_ID_ALL = "0"
@@ -14,10 +18,13 @@ class ClusterManager():
         """
         node_id = str(uuid.uuid4())
         self.id_to_node[node_id] = node
+        Logger.d(TAG, f"activate node {node_id}")
         return node_id
 
     def get_active_nodes(self) -> List[INode]:
-        return list(self.id_to_node.values())
+        active_nodes = list(self.id_to_node.values())
+        Logger.d(TAG, f"return activate nodes {active_nodes}")
+        return active_nodes
 
     def shutdown_all_nodes(self):
         map(lambda node: node.stop(), self.id_to_node.values())
