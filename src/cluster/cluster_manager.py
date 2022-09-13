@@ -28,4 +28,5 @@ class ClusterManager():
 
     def shutdown_all_nodes(self):
         for node in self.id_to_node.values():
+            Logger.d(TAG, f"shutting down node [{node.get_node_id()}]")
             node.stop()
